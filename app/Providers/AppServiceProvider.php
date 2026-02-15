@@ -19,6 +19,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        \Illuminate\Support\Facades\Hash::extend('sha1', function ($app) {
+            return new \App\Hashing\Sha1Hasher();
+        });
+
+        \App\Models\StockTransaction::observe(\App\Observers\StockTransactionObserver::class);
+        \App\Models\Sale::observe(\App\Observers\SaleObserver::class);
     }
 }
