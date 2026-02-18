@@ -17,7 +17,7 @@
                         'light-bg': '#eaf4ff', // Light blue background for hero
                         'footer-bg': '#002b5c', // Footer blue
                     },
-                fontFamily: {
+                    fontFamily: {
                         'sans': ['Outfit', 'Inter', 'system-ui', 'sans-serif'],
                     }
                 }
@@ -42,15 +42,37 @@
         .card-shape {
             border-radius: 20px;
         }
+
+        /* Marquee Animation */
+        @keyframes marquee {
+            0% {
+                transform: translateX(100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        .animate-marquee {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 40s linear infinite;
+        }
     </style>
 </head>
 
-<body class="bg-white text-slate-800 antialiased">
+<body id="home" class="bg-white text-slate-800 antialiased">
 
     <!-- Top Bar -->
-    <div class="bg-footer-bg text-white py-2 px-4 text-xs font-light text-right">
+    <div class="bg-footer-bg text-white py-2 overflow-hidden whitespace-nowrap text-xs font-light">
         <div class="container mx-auto">
-            <span>Toko Sembako • Layanan Pengantaran Cepat • Sembako Pro</span>
+            <div class="animate-marquee">
+                <span>Toko Sembako • Layanan Pengantaran Cepat • Sembako Pro • Stok Segar Setiap Hari • Harga Terbaik
+                    Langsung dari Petani • </span>
+                <span>Toko Sembako • Layanan Pengantaran Cepat • Sembako Pro • Stok Segar Setiap Hari • Harga Terbaik
+                    Langsung dari Petani • </span>
+            </div>
         </div>
     </div>
 
@@ -71,18 +93,18 @@
 
                 <!-- Nav Links -->
                 <div class="hidden lg:flex items-center space-x-10 text-sm font-semibold text-slate-600">
-                    <a href="#" class="hover:text-primary transition-colors">Beranda</a>
-                    <a href="#" class="text-primary border-b-2 border-primary pb-1">Produk</a>
-                    <a href="#" class="hover:text-primary transition-colors">Promo</a>
-                    <a href="#" class="hover:text-primary transition-colors">Tentang Kami</a>
-                    <a href="#" class="hover:text-primary transition-colors">Kontak</a>
+                    <a href="#home" class="hover:text-primary transition-colors">Beranda</a>
+                    <a href="#features" class="hover:text-primary transition-colors">Produk</a>
+                    <a href="#promo" class="hover:text-primary transition-colors">Promo</a>
+                    <a href="#about" class="hover:text-primary transition-colors">Tentang Kami</a>
+                    <a href="#contact" class="hover:text-primary transition-colors">Kontak</a>
                 </div>
 
                 <!-- Action Button -->
                 <div class="flex items-center">
-                    <a href="{{ route('pos.dashboard') }}"
+                    <a href="{{ route('login') }}"
                         class="px-6 py-2.5 bg-primary text-white rounded-md text-sm font-bold shadow-lg hover:bg-opacity-90 transition-all">
-                        Login POS
+                        Login
                     </a>
                 </div>
             </div>
@@ -98,17 +120,34 @@
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#003d7a] leading-tight mb-8">
                         Kebutuhan Pokok Segar & Terjangkau Langsung ke Rumah Anda!
                     </h1>
-                    <button
-                        class="px-10 py-4 bg-secondary text-white rounded-full font-bold shadow-lg hover:shadow-xl hover:bg-opacity-90 transition-all text-lg">
+                    <a href="{{ route('pos.terminal') }}"
+                        class="inline-block px-10 py-4 bg-secondary text-white rounded-full font-bold shadow-lg hover:shadow-xl hover:bg-opacity-90 transition-all text-lg">
                         Mulai Belanja Sekarang
-                    </button>
+                    </a>
                 </div>
 
                 <!-- Hero Image -->
                 <div class="relative flex justify-center lg:justify-end">
-                    <div class="w-full max-w-lg aspect-square bg-slate-200 overflow-hidden hero-shape shadow-2xl">
+                    <div
+                        class="w-full max-w-lg aspect-square bg-slate-200 overflow-hidden hero-shape shadow-2xl relative">
                         <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=1000"
                             alt="Fresh Groceries" class="w-full h-full object-cover">
+
+                        <!-- Floating Badge (Garansi Kesegaran) -->
+                        <div class="absolute bottom-8 left-6 right-6">
+                            <div
+                                class="bg-white/90 backdrop-blur-md p-6 rounded-[32px] flex items-center space-x-5 border border-white/50 shadow-2xl">
+                                <div
+                                    class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 shadow-inner">
+                                    <i class="fas fa-check text-xl"></i>
+                                </div>
+                                <div class="flex flex-col">
+                                    <span class="text-lg font-bold text-slate-900 leading-tight">Garansi
+                                        Kesegaran</span>
+                                    <span class="text-sm text-slate-500 font-medium">100% Produk Pilihan</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -116,7 +155,7 @@
     </section>
 
     <!-- Features Section -->
-    <section class="py-16 md:py-24 bg-white">
+    <section id="features" class="py-16 md:py-24 bg-white">
         <div class="container mx-auto px-4 md:px-12">
             <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Card 1 -->
@@ -148,7 +187,7 @@
                 </div>
 
                 <!-- Card 3 -->
-                <div
+                <div id="promo"
                     class="bg-white p-10 flex flex-col items-center text-center shadow-[0_0_50px_rgba(0,0,0,0.05)] card-shape hover:translate-y-[-5px] transition-transform">
                     <div class="mb-6">
                         <div class="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center">
@@ -164,8 +203,55 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section id="about" class="py-16 md:py-24 bg-light-bg">
+        <div class="container mx-auto px-4 md:px-12">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="order-2 md:order-1">
+                    <div class="w-full aspect-video bg-white rounded-[2.5rem] p-8 shadow-xl flex items-center justify-center border border-white/50">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center text-white text-3xl">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-2xl font-black text-primary uppercase tracking-tight">Panen Segar</h4>
+                                <p class="text-slate-500 font-medium">Mitra Sembako Kepercayaan Anda</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-1 md:order-2">
+                    <h2 class="text-3xl md:text-4xl font-extrabold text-[#003d7a] mb-6">Tentang Kami</h2>
+                    <p class="text-slate-600 leading-relaxed mb-6 font-medium">
+                        Panen Segar adalah penyedia produk sembako dan sayuran berkualitas yang berkomitmen untuk memberikan kemudahan bagi masyarakat dalam memenuhi kebutuhan harian.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary flex-shrink-0">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Kualitas Utama</h4>
+                                <p class="text-sm text-slate-500">Kami menjamin setiap produk yang sampai ke tangan Anda adalah yang terbaik.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary flex-shrink-0">
+                                <i class="fas fa-shipping-fast"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-slate-900">Pengiriman Cepat</h4>
+                                <p class="text-sm text-slate-500">Layanan antar yang efisien untuk menjaga produk tetap segar.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
-    <footer class="bg-footer-bg text-white py-12">
+    <footer id="contact" class="bg-footer-bg text-white py-12">
         <div class="container mx-auto px-4 md:px-12">
             <div class="flex flex-col md:flex-row justify-between items-center gap-8">
                 <!-- Footer Logo -->
