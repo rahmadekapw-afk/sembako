@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [\App\Http\Controllers\POSViewController::class, 'landing'])->name('landing');
 
-Route::redirect('/login', '/admin/login')->name('login');
+Route::post('/login', [\App\Http\Controllers\POSViewController::class, 'login'])->name('login');
 
 Route::prefix('pos')->name('pos.')->group(function () {
     Route::get('/dashboard', [\App\Http\Controllers\POSViewController::class, 'dashboard'])->name('dashboard');

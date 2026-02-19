@@ -49,4 +49,28 @@ class POSViewController extends Controller
     {
         return view('pos.settings');
     }
+
+    public function login(Request $request)
+    {
+        $credentials = $request->validate([
+            'email' => ['required'],
+            'password' => ['required'],
+        ]);
+
+        $loginField = filter_var($credentials['email'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+        $attempt = [
+            $loginField => $credentials['email'],
+            'password' => $credentials['password'],
+        ];
+
+        if (auth()->attempt($attempt, $request->boolean('remember'))) {
+            $request->session()->regenerate();
+            return redirect()->intended(route('pos.dashboard'));
+        }
+
+        return back()->withErrors([
+            'email' => 'Kredensial yang diberikan tidak cocok dengan data kami.',
+        ])->onlyInput('email');
+    }
 }

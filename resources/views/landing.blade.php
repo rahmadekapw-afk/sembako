@@ -102,10 +102,10 @@
 
                 <!-- Action Button -->
                 <div class="flex items-center">
-                    <a href="{{ route('login') }}"
+                    <button id="openLoginModal"
                         class="px-6 py-2.5 bg-primary text-white rounded-md text-sm font-bold shadow-lg hover:bg-opacity-90 transition-all">
                         Login
-                    </a>
+                    </button>
                 </div>
             </div>
         </div>
@@ -120,10 +120,16 @@
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-[#003d7a] leading-tight mb-8">
                         Kebutuhan Pokok Segar & Terjangkau Langsung ke Rumah Anda!
                     </h1>
-                    <a href="{{ route('pos.terminal') }}"
-                        class="inline-block px-10 py-4 bg-secondary text-white rounded-full font-bold shadow-lg hover:shadow-xl hover:bg-opacity-90 transition-all text-lg">
-                        Mulai Belanja Sekarang
-                    </a>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="{{ route('pos.terminal') }}"
+                            class="inline-block px-10 py-4 bg-secondary text-white rounded-full font-bold shadow-lg hover:shadow-xl hover:bg-opacity-90 transition-all text-lg">
+                            Mulai Belanja Sekarang
+                        </a>
+                        <button onclick="toggleLoginModal()"
+                            class="inline-block px-10 py-4 bg-white text-primary border-2 border-primary rounded-full font-bold shadow-md hover:bg-slate-50 transition-all text-lg lg:hidden">
+                            Login
+                        </button>
+                    </div>
                 </div>
 
                 <!-- Hero Image -->
@@ -208,9 +214,11 @@
         <div class="container mx-auto px-4 md:px-12">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="order-2 md:order-1">
-                    <div class="w-full aspect-video bg-white rounded-[2.5rem] p-8 shadow-xl flex items-center justify-center border border-white/50">
+                    <div
+                        class="w-full aspect-video bg-white rounded-[2.5rem] p-8 shadow-xl flex items-center justify-center border border-white/50">
                         <div class="flex items-center space-x-4">
-                            <div class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center text-white text-3xl">
+                            <div
+                                class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center text-white text-3xl">
                                 <i class="fas fa-store"></i>
                             </div>
                             <div>
@@ -223,25 +231,30 @@
                 <div class="order-1 md:order-2">
                     <h2 class="text-3xl md:text-4xl font-extrabold text-[#003d7a] mb-6">Tentang Kami</h2>
                     <p class="text-slate-600 leading-relaxed mb-6 font-medium">
-                        Panen Segar adalah penyedia produk sembako dan sayuran berkualitas yang berkomitmen untuk memberikan kemudahan bagi masyarakat dalam memenuhi kebutuhan harian.
+                        Panen Segar adalah penyedia produk sembako dan sayuran berkualitas yang berkomitmen untuk
+                        memberikan kemudahan bagi masyarakat dalam memenuhi kebutuhan harian.
                     </p>
                     <div class="space-y-4">
                         <div class="flex items-start space-x-4">
-                            <div class="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary flex-shrink-0">
+                            <div
+                                class="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary flex-shrink-0">
                                 <i class="fas fa-check-circle"></i>
                             </div>
                             <div>
                                 <h4 class="font-bold text-slate-900">Kualitas Utama</h4>
-                                <p class="text-sm text-slate-500">Kami menjamin setiap produk yang sampai ke tangan Anda adalah yang terbaik.</p>
+                                <p class="text-sm text-slate-500">Kami menjamin setiap produk yang sampai ke tangan Anda
+                                    adalah yang terbaik.</p>
                             </div>
                         </div>
                         <div class="flex items-start space-x-4">
-                            <div class="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary flex-shrink-0">
+                            <div
+                                class="w-10 h-10 bg-white rounded-xl shadow-sm flex items-center justify-center text-primary flex-shrink-0">
                                 <i class="fas fa-shipping-fast"></i>
                             </div>
                             <div>
                                 <h4 class="font-bold text-slate-900">Pengiriman Cepat</h4>
-                                <p class="text-sm text-slate-500">Layanan antar yang efisien untuk menjaga produk tetap segar.</p>
+                                <p class="text-sm text-slate-500">Layanan antar yang efisien untuk menjaga produk tetap
+                                    segar.</p>
                             </div>
                         </div>
                     </div>
@@ -278,6 +291,133 @@
         </div>
     </footer>
 
+    <!-- Login Modal -->
+    <div id="loginModal" class="fixed inset-0 z-50 hidden overflow-y-auto" aria-labelledby="modal-title" role="dialog"
+        aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+            <!-- Overlay -->
+            <div id="modalOverlay" class="fixed inset-0 transition-opacity bg-slate-900/60 backdrop-blur-sm"
+                aria-hidden="true"></div>
+
+            <!-- Modal Panel -->
+            <div
+                class="inline-block overflow-hidden text-left align-bottom transition-all transform bg-white shadow-2xl rounded-3xl sm:my-8 sm:align-middle sm:max-w-md sm:w-full">
+                <div class="px-8 pt-10 pb-8 bg-white">
+                    <div class="flex flex-col items-center mb-8">
+                        <div
+                            class="w-16 h-16 bg-primary rounded-2xl flex items-center justify-center text-white mb-4 shadow-lg">
+                            <i class="fas fa-shopping-basket text-2xl"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold text-slate-900">Selamat Datang Kembali</h2>
+                        <p class="text-slate-500 text-sm mt-1">Silakan login ke akun Anda</p>
+                    </div>
+
+                    <form action="{{ route('login') }}" method="POST" class="space-y-5">
+                        @csrf
+                        <div>
+                            <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">Email /
+                                Username</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+                                    <i class="fas fa-envelope"></i>
+                                </span>
+                                <input type="text" id="email" name="email" required
+                                    class="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                                    placeholder="Masukkan email atau username">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="password"
+                                class="block text-sm font-semibold text-slate-700 mb-2">Password</label>
+                            <div class="relative">
+                                <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-slate-400">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                                <input type="password" id="password" name="password" required
+                                    class="w-full pl-11 pr-7 py-3 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
+                                    placeholder="Masukkan password">
+                                <button type="button" onclick="togglePassword()"
+                                    class="absolute inset-y-0 right-0 flex items-center pr-4 text-slate-400 hover:text-primary transition-colors">
+                                    <i id="eyeIcon" class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between">
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" name="remember"
+                                    class="w-4 h-4 text-primary border-slate-300 rounded focus:ring-primary/20">
+                                <span class="text-sm text-slate-600">Ingat Saya</span>
+                            </label>
+                            <a href="#" class="text-sm font-semibold text-primary hover:text-opacity-80">Lupa
+                                Password?</a>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full py-4 bg-primary text-white font-bold rounded-xl shadow-lg shadow-primary/30 hover:bg-opacity-95 transform active:scale-[0.98] transition-all mt-4">
+                            Masuk Sekarang
+                        </button>
+                    </form>
+                </div>
+
+                <div class="px-8 py-6 bg-slate-50 border-t border-slate-100 text-center">
+                    <p class="text-sm text-slate-600">
+                        Belum punya akun? <a href="#" class="font-bold text-primary hover:underline">Hubungi Admin</a>
+                    </p>
+                </div>
+
+                <!-- Close Button -->
+                <button id="closeLoginModal"
+                    class="absolute top-4 right-4 p-2 text-slate-400 hover:text-slate-600 transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const modal = document.getElementById('loginModal');
+            const openBtn = document.getElementById('openLoginModal');
+            const closeBtn = document.getElementById('closeLoginModal');
+            const overlay = document.getElementById('modalOverlay');
+
+            function toggleModal() {
+                modal.classList.toggle('hidden');
+                if (!modal.classList.contains('hidden')) {
+                    document.body.style.overflow = 'hidden';
+                } else {
+                    document.body.style.overflow = '';
+                }
+            }
+
+            if (openBtn) openBtn.addEventListener('click', toggleModal);
+            if (closeBtn) closeBtn.addEventListener('click', toggleModal);
+            if (overlay) overlay.addEventListener('click', toggleModal);
+
+            // Escape key to close
+            window.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal && !modal.classList.contains('hidden')) {
+                    toggleModal();
+                }
+            });
+        });
+
+        function togglePassword() {
+            const passwordInput = document.getElementById('password');
+            const eyeIcon = document.getElementById('eyeIcon');
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            }
+        }
+    </script>
 </body>
 
 </html>
