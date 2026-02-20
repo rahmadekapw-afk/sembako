@@ -11,7 +11,7 @@ class POSViewController extends Controller
 {
     public function landing()
     {
-        return view('landing');
+        return "Server is working!";
     }
 
     public function dashboard()

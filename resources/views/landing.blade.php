@@ -32,9 +32,9 @@
         }
 
         .hero-shape {
-            border-top-left-radius: 40px;
-            border-top-right-radius: 120px;
-            border-bottom-right-radius: 120px;
+            border-top-left-radius: 80px;
+            border-top-right-radius: 40px;
+            border-bottom-right-radius: 80px;
             border-bottom-left-radius: 40px;
         }
 
@@ -136,24 +136,9 @@
                 <div class="relative flex justify-center lg:justify-end">
                     <div
                         class="w-full max-w-lg aspect-square bg-slate-200 overflow-hidden hero-shape shadow-2xl relative">
-                        <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=1000"
-                            alt="Fresh Groceries" class="w-full h-full object-cover">
+                        <img src="{{ asset('storage/hero/orang.png') }}" alt="Fresh Groceries"
+                            class="w-full h-full object-cover">
 
-                        <!-- Floating Badge (Garansi Kesegaran) -->
-                        <div class="absolute bottom-8 left-6 right-6">
-                            <div
-                                class="bg-white/90 backdrop-blur-md p-6 rounded-[32px] flex items-center space-x-5 border border-white/50 shadow-2xl">
-                                <div
-                                    class="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-600 shadow-inner">
-                                    <i class="fas fa-check text-xl"></i>
-                                </div>
-                                <div class="flex flex-col">
-                                    <span class="text-lg font-bold text-slate-900 leading-tight">Garansi
-                                        Kesegaran</span>
-                                    <span class="text-sm text-slate-500 font-medium">100% Produk Pilihan</span>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
